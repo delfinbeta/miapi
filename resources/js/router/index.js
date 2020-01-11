@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Categories from '../components/categories/List.vue'
 
 Vue.use(Router)
 
 const Users = { template: '<div>Admin Usuarios</div>' }
-const Categories = { template: '<div>Admin Categorías</div>' }
 const Tasks = { template: '<div>Admin Tareas</div>' }
 
 var router = new Router({

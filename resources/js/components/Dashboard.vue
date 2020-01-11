@@ -3,8 +3,7 @@
   <div class="row justify-content-center">
     <div class="col">
       <div class="card">
-        <div class="card-header">Bienvenido a tu Dashboard</div>
-
+        <div class="card-header bg-primary text-white">Bienvenido a tu Dashboard</div>
         <div class="card-body">
           <div class="container">
             <div class="row justify-content-between">
