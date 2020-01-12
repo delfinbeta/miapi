@@ -16,7 +16,9 @@
           <td>{{ reg.name }}</td>
           <td>
             <button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
-            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+            <button type="button" class="btn btn-danger" @click="remove(reg.id)">
+              <i class="fas fa-trash"></i>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -29,6 +31,19 @@ export default {
   data() {
     return {
       list: []
+    }
+  },
+  methods: {
+    remove(id) {
+      axios.delete('http://miapi.local:8080/api/categories/' + id)
+      .then(response => {
+        let index = this.list.findIndex(category => category.id == id);
+
+        this.list.splice(index, 1);
+      })
+      .catch(error => {
+        console.log(error);
+      });
     }
   },
   mounted() {

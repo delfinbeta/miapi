@@ -18,7 +18,9 @@
           <td>{{ reg.email }}</td>
           <td>
             <button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
-            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+            <button type="button" class="btn btn-danger" @click="remove(reg.id)">
+              <i class="fas fa-trash"></i>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -31,6 +33,19 @@ export default {
   data() {
     return {
       list: []
+    }
+  },
+  methods: {
+    remove(id) {
+      axios.delete('http://miapi.local:8080/api/users/' + id)
+      .then(response => {
+        let index = this.list.findIndex(user => user.id == id);
+
+        this.list.splice(index, 1);
+      })
+      .catch(error => {
+        console.log(error);
+      });
     }
   },
   mounted() {

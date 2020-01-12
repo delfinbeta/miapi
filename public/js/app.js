@@ -2129,17 +2129,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       list: []
     };
   },
+  methods: {
+    remove: function remove(id) {
+      var _this = this;
+
+      axios["delete"]('http://miapi.local:8080/api/categories/' + id).then(function (response) {
+        var index = _this.list.findIndex(function (category) {
+          return category.id == id;
+        });
+
+        _this.list.splice(index, 1);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get('http://miapi.local:8080/api/categories').then(function (response) {
-      _this.list = response.data;
+      _this2.list = response.data;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -2157,6 +2174,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -2204,18 +2225,31 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return '---';
       }
+    },
+    remove: function remove(id) {
+      var _this = this;
+
+      axios["delete"]('http://miapi.local:8080/api/tasks/' + id).then(function (response) {
+        var index = _this.list.findIndex(function (task) {
+          return task.id == id;
+        });
+
+        _this.list.splice(index, 1);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get('http://miapi.local:8080/api/categories').then(function (response) {
-      _this.categories = response.data;
+      _this2.categories = response.data;
     })["catch"](function (error) {
       console.log(error);
     });
     axios.get('http://miapi.local:8080/api/tasks').then(function (response) {
-      _this.list = response.data;
+      _this2.list = response.data;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -2261,17 +2295,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       list: []
     };
   },
+  methods: {
+    remove: function remove(id) {
+      var _this = this;
+
+      axios["delete"]('http://miapi.local:8080/api/users/' + id).then(function (response) {
+        var index = _this.list.findIndex(function (user) {
+          return user.id == id;
+        });
+
+        _this.list.splice(index, 1);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get('http://miapi.local:8080/api/users').then(function (response) {
-      _this.list = response.data;
+      _this2.list = response.data;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -37847,7 +37898,23 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(reg.name))]),
             _vm._v(" "),
-            _vm._m(1, true)
+            _c("td", [
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.remove(reg.id)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-trash" })]
+              )
+            ])
           ])
         }),
         0
@@ -37897,17 +37964,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-info", attrs: { type: "button" } }, [
-        _c("i", { staticClass: "fas fa-edit" })
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-danger", attrs: { type: "button" } },
-        [_c("i", { staticClass: "fas fa-trash" })]
-      )
-    ])
+    return _c(
+      "button",
+      { staticClass: "btn btn-info", attrs: { type: "button" } },
+      [_c("i", { staticClass: "fas fa-edit" })]
+    )
   }
 ]
 render._withStripped = true
@@ -37945,7 +38006,37 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(reg.title))]),
             _vm._v(" "),
-            _vm._m(1, true)
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-secondary",
+                  attrs: { type: "button" }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fas",
+                    class: reg.pending ? "fa-check-square" : "fa-square"
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.remove(reg.id)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-trash" })]
+              )
+            ])
           ])
         }),
         0
@@ -37997,23 +38088,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "button",
-        { staticClass: "btn btn-outline-secondary", attrs: { type: "button" } },
-        [_c("i", { staticClass: "fas fa-check-square" })]
-      ),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-info", attrs: { type: "button" } }, [
-        _c("i", { staticClass: "fas fa-edit" })
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-danger", attrs: { type: "button" } },
-        [_c("i", { staticClass: "fas fa-trash" })]
-      )
-    ])
+    return _c(
+      "button",
+      { staticClass: "btn btn-info", attrs: { type: "button" } },
+      [_c("i", { staticClass: "fas fa-edit" })]
+    )
   }
 ]
 render._withStripped = true
@@ -38051,7 +38130,23 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(reg.email))]),
             _vm._v(" "),
-            _vm._m(1, true)
+            _c("td", [
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.remove(reg.id)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-trash" })]
+              )
+            ])
           ])
         }),
         0
@@ -38103,17 +38198,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-info", attrs: { type: "button" } }, [
-        _c("i", { staticClass: "fas fa-edit" })
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-danger", attrs: { type: "button" } },
-        [_c("i", { staticClass: "fas fa-trash" })]
-      )
-    ])
+    return _c(
+      "button",
+      { staticClass: "btn btn-info", attrs: { type: "button" } },
+      [_c("i", { staticClass: "fas fa-edit" })]
+    )
   }
 ]
 render._withStripped = true
