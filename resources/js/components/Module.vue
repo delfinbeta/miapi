@@ -1,10 +1,16 @@
 <template>
   <div class="card">
-    <div class="card-header bg-info text-white"><i class="fas" :class="icon"></i>  {{ title }}</div>    
+    <div class="card-header bg-info text-white"><i class="fas" :class="icon"></i> {{ title }}</div>    
     <div class="card-body">
-      <list-users      v-if="(slug == 'users')"></list-users>
-      <list-categories v-if="(slug == 'categories')"></list-categories>
-      <list-tasks      v-if="(slug == 'tasks')"></list-tasks>
+      <list-users      v-if="(slug == 'users'      && !operation)"></list-users>
+      <list-categories v-if="(slug == 'categories' && !operation)"></list-categories>
+      <list-tasks      v-if="(slug == 'tasks'      && !operation)"></list-tasks>
+      <create-user     v-if="(slug == 'users'      && operation == 'create')"></create-user>
+      <create-category v-if="(slug == 'categories' && operation == 'create')"></create-category>
+      <create-task     v-if="(slug == 'tasks'      && operation == 'create')"></create-task>
+      <edit-user       v-if="(slug == 'users'      && operation == 'edit')" :id="id"></edit-user>
+      <edit-category   v-if="(slug == 'categories' && operation == 'edit')" :id="id"></edit-category>
+      <edit-task       v-if="(slug == 'tasks'      && operation == 'edit')" :id="id"></edit-task>
     </div>
   </div>
 </template>
@@ -13,9 +19,15 @@
 import ListUsers      from './users/List.vue';
 import ListCategories from './categories/List.vue';
 import ListTasks      from './tasks/List.vue';
+import CreateUser     from './users/Create.vue';
+import CreateCategory from './categories/Create.vue';
+import CreateTask     from './tasks/Create.vue';
+import EditUser       from './users/Edit.vue';
+import EditCategory   from './categories/Edit.vue';
+import EditTask       from './tasks/Edit.vue';
 
 export default {
-  props: ['slug'],
+  props: ['slug', 'operation', 'id'],
   computed: {
     title() {
       let text = '';
@@ -45,7 +57,13 @@ export default {
   components: {
     'list-users': ListUsers,
     'list-categories': ListCategories,
-    'list-tasks': ListTasks
+    'list-tasks': ListTasks,
+    'create-user': CreateUser,
+    'create-category': CreateCategory,
+    'create-task': CreateTask,
+    'edit-user': EditUser,
+    'edit-category': EditCategory,
+    'edit-task': EditTask
   },
   mounted() {
     console.log('Component Module mounted.')
