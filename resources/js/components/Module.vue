@@ -8,9 +8,9 @@
       <create-user     v-if="(slug == 'users'      && operation == 'create')"></create-user>
       <create-category v-if="(slug == 'categories' && operation == 'create')"></create-category>
       <create-task     v-if="(slug == 'tasks'      && operation == 'create')"></create-task>
-      <edit-user       v-if="(slug == 'users'      && operation == 'edit')"></edit-user>
-      <edit-category   v-if="(slug == 'categories' && operation == 'edit')"></edit-category>
-      <edit-task       v-if="(slug == 'tasks'      && operation == 'edit')"></edit-task>
+      <edit-user       v-if="(slug == 'users'      && operation == 'edit')" :id="id"></edit-user>
+      <edit-category   v-if="(slug == 'categories' && operation == 'edit')" :id="id"></edit-category>
+      <edit-task       v-if="(slug == 'tasks'      && operation == 'edit')" :id="id"></edit-task>
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@ import EditCategory   from './categories/Edit.vue';
 import EditTask       from './tasks/Edit.vue';
 
 export default {
-  props: ['slug', 'operation'],
+  props: ['slug', 'operation', 'id'],
   computed: {
     title() {
       let text = '';
