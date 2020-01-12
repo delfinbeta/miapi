@@ -8,13 +8,13 @@
           <div class="container">
             <div class="row justify-content-between">
               <a href="/home" class="btn btn-primary"><i class="fas fa-home"></i> Dashboard</a>
-              <router-link class="btn btn-primary" :to="{name: 'users'}">
+              <router-link class="btn btn-primary" to="/admin/users">
                 <i class="fas fa-users"></i> Usuarios
               </router-link>
-              <router-link class="btn btn-primary" :to="{name: 'categories'}">
+              <router-link class="btn btn-primary" to="/admin/categories">
                 <i class="fas fa-cogs"></i> Categorías
               </router-link>
-              <router-link class="btn btn-primary" :to="{name: 'tasks'}">
+              <router-link class="btn btn-primary" to="/admin/tasks">
                 <i class="fas fa-tasks"></i> Tareas
               </router-link>
             </div>
