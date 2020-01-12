@@ -7,7 +7,9 @@
           <th scope="col">Usuario</th>
           <th scope="col">Email</th>
           <th scope="col" style="text-align: center; width: 110px;">
-            <a href="#" class="btn btn-sm btn-block btn-success"><i class="fas fa-plus"></i> Nuevo</a>
+            <router-link to="/admin/users/create" class="btn btn-sm btn-block btn-success">
+              <i class="fas fa-plus"></i> Nuevo
+            </router-link>
           </th>
         </tr>
       </thead>
@@ -17,7 +19,9 @@
           <td>{{ reg.name }}</td>
           <td>{{ reg.email }}</td>
           <td>
-            <button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
+            <router-link type="button" :to="{ path: '/admin/users/edit/' + reg.id }" class="btn btn-info">
+              <i class="fas fa-edit"></i>
+            </router-link>
             <button type="button" class="btn btn-danger" @click="remove(reg.id)">
               <i class="fas fa-trash"></i>
             </button>

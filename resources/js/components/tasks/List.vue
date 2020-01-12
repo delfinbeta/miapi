@@ -7,7 +7,9 @@
           <th scope="col">Categoría</th>
           <th scope="col">Tarea</th>
           <th scope="col" style="text-align: center; width: 160px;">
-            <a href="#" class="btn btn-sm btn-block btn-success"><i class="fas fa-plus"></i> Nuevo</a>
+            <router-link to="/admin/tasks/create" class="btn btn-sm btn-block btn-success">
+              <i class="fas fa-plus"></i> Nuevo
+            </router-link>
           </th>
         </tr>
       </thead>
@@ -18,9 +20,11 @@
           <td>{{ reg.title }}</td>
           <td>
             <button type="button" class="btn btn-outline-secondary">
-              <i class="fas" :class="reg.pending ? 'fa-check-square' : 'fa-square'"></i>
+              <i class="fas" :class="reg.pending ? 'fa-square' : 'fa-check-square'"></i>
             </button>
-            <button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
+            <router-link type="button" :to="{ path: '/admin/tasks/edit/' + reg.id }" class="btn btn-info">
+              <i class="fas fa-edit"></i>
+            </router-link>
             <button type="button" class="btn btn-danger" @click="remove(reg.id)">
               <i class="fas fa-trash"></i>
             </button>
