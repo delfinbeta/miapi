@@ -11,25 +11,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td scope="row">001</td>
-          <td>Category 1</td>
-          <td>
-            <button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
-            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-          </td>
-        </tr>
-        <tr>
-          <td scope="row">002</td>
-          <td>Category 2</td>
-          <td>
-            <button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
-            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-          </td>
-        </tr>
-        <tr>
-          <td scope="row">003</td>
-          <td>Category 3</td>
+        <tr v-for="reg in list" :key="reg.id">
+          <td scope="row">{{ reg.id }}</td>
+          <td>{{ reg.name }}</td>
           <td>
             <button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
             <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
@@ -39,3 +23,22 @@
     </table>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      list: []
+    }
+  },
+  mounted() {
+    axios.get('http://miapi.local:8080/api/categories')
+    .then(response => {
+      this.list = response.data;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+}
+</script>

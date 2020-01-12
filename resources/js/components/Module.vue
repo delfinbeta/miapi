@@ -23,7 +23,7 @@ export default {
       switch (this.slug) {
         case 'users':      text = 'Mis Usuarios';   break;
         case 'categories': text = 'Mis Categorías'; break;
-        case 'tasks':      text = 'Mis Tareas';      break;
+        case 'tasks':      text = 'Mis Tareas';     break;
         default: text = ''; break;
       }
 
